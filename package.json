@@ -1,0 +1,19 @@
+{
+  "name": "minor-wafs",
+  "version": "0.0.1",
+  "description": "Web App From Scratch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IanCStewart/minor-wafs.git"
+  },
+  "keywords": [
+    "minor",
+    "web-dev",
+    "wafs"
+  ],
+  "author": "Ian Stewart",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.13.1"
+  }
+}
