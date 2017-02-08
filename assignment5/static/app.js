@@ -1,7 +1,7 @@
 /*global window, document*/
 (function (){
   const section = {
-    init: function (){
+    init() {
       const route = window.location.hash;
       if(route === '') {
         routes.pages.forEach(function (page) {
@@ -9,7 +9,6 @@
           ? document.getElementById(page).classList.remove('invisible')
           : document.getElementById(page).classList.add('invisible');
         });
-        return false;
       } else {
         routes.pages.forEach(function (page) {
           `#${page}` === route
@@ -18,7 +17,7 @@
         });
       }
     },
-    toggle: function (){
+    toggle() {
       const route = window.location.hash;
       routes.pages.forEach(function (page) {
         `#${page}` === route
@@ -32,13 +31,13 @@
       'home',
       'best-practices'
     ],
-    init: function (){
+    init() {
       section.init();
       window.addEventListener('hashchange', section.toggle, false);
     }
   };
   const app = {
-    init: function (){
+    init() {
       routes.init();
     }
   };
