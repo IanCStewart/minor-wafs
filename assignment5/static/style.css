@@ -66,3 +66,8 @@ nav a:hover {
   background: #467BBE;
   color: #efefef;
 }
+
+.invisible {
+  height: 0;
+  display: none;
+}
