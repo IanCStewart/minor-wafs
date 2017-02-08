@@ -1,7 +1,7 @@
 # Web App From Scratch
 _This is a Repo for the course Web App From Scratch._
 
-### Week 1
+## Week 1
 In the first week we will have the following exercises:
 - [x] Make a GitHub repository
 - [x] Research Pros and Cons of jQuery
