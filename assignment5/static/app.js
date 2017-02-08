@@ -1,45 +1,36 @@
 /*global window, document*/
 (function (){
   const section = {
-    init() {
-      const route = window.location.hash;
-      if(route === '') {
-        routes.pages.forEach(function (page) {
-          page === 'home'
-          ? document.getElementById(page).classList.remove('invisible')
-          : document.getElementById(page).classList.add('invisible');
-        });
-      } else {
-        routes.pages.forEach(function (page) {
-          `#${page}` === route
-          ? document.getElementById(page).classList.remove('invisible')
-          : document.getElementById(page).classList.add('invisible');
-        });
-      }
+    init(route) {
+      route === ''
+      ? routes.pages.forEach(function (page) {
+        page === '#home'
+        ? document.querySelector(page).classList.remove('invisible')
+        : document.querySelector(page).classList.add('invisible');
+      })
+      : routes.pages.forEach(function (page) {
+        page === route
+        ? document.querySelector(page).classList.remove('invisible')
+        : document.querySelector(page).classList.add('invisible');
+      });
     },
-    toggle() {
-      const route = window.location.hash;
+    toggle(route) {
       routes.pages.forEach(function (page) {
-        `#${page}` === route
-        ? document.getElementById(page).classList.remove('invisible')
-        : document.getElementById(page).classList.add('invisible');
+        page === route
+        ? document.querySelector(page).classList.remove('invisible')
+        : document.querySelector(page).classList.add('invisible');
       });
     }
   };
   const routes = {
-    pages: [
-      'home',
-      'best-practices'
-    ],
+    pages: ['#home', '#best-practices'],
     init() {
-      section.init();
-      window.addEventListener('hashchange', section.toggle, false);
+      section.init(window.location.hash);
+      window.addEventListener('hashchange', () => section.toggle(window.location.hash), false);
     }
   };
   const app = {
-    init() {
-      routes.init();
-    }
+    init() {routes.init();}
   };
 
   app.init();
