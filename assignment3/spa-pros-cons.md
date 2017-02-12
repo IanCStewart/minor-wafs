@@ -4,7 +4,7 @@
 A single-page application is an app that works inside a browser and does not require page reloading during use. You are using this type of applications every day. These are, for instance: Gmail, Google Maps, Facebook or GitHub.
 
 ## Pros
-+ Fast
++ Fast (it provides better responsiveness and information flow thus being 'fast')
 + Simplified development
 + Easy to debug with web inspector
 + Easy to convert to mobile app
@@ -12,7 +12,7 @@ A single-page application is an app that works inside a browser and does not req
 
 ## Cons
 - It's a hard task to make SEO optimization
-- Slow to download
+- Slow to download (heavy client frameworks are required to be loaded to the client)
 - Needs JS to be presented
 - JS leak can break shit
 
