@@ -6,7 +6,7 @@ https://github.com/ju5tu5/cmdgeo/blob/master/src/cmdgeo-0.1.js
 
 (function() {
   // Object with all constant constiables.
-  const constObject = {
+  const config = {
       sandbox: 'SANDBOX',
       lineair: 'LINEAIR',
       gpsAvailable: 'GPS_AVAILABLE',
@@ -63,31 +63,31 @@ https://github.com/ju5tu5/cmdgeo/blob/master/src/cmdgeo-0.1.js
     const location = {
         // Test for GPS (in geo.js) and fire an event.
         init() {
-            ET.addListener(constObject.gpsAvailable, this.startInterval);
-            ET.addListener(constObject.gpsUnavailable, function() {
+            ET.addListener(config.gpsAvailable, this.startInterval);
+            ET.addListener(config.gpsUnavailable, function() {
                 debug.message('GPS is not available.');
             });
             (goePositionJs.init())
-                ? ET.fire(constObject.gpsAvailable)
-                : ET.fire(constObject.gpsUnavailable);
+                ? ET.fire(config.gpsAvailable)
+                : ET.fire(config.gpsUnavailable);
         },
         // Start interval based on the refreshRate, updates the position
         startInterval() {
             debug.message('GPS is available, asking for position.');
             this.update();
-            constObject.interval = this.setInterval(this.update, constObject.refreshRate);
-            ET.addListener(constObject.positionUpdated, this.check);
+            config.interval = this.setInterval(this.update, config.refreshRate);
+            ET.addListener(config.positionUpdated, this.check);
         },
         // Ask for the position in geo.js, initiates callback for the result
         update() {
-            constObject.intervalCounter++;
+            config.intervalCounter++;
             goePositionJs.getCurrentPosition(this.set, debug.geoErrorHandler, {enableHighAccuracy: true});
         },
         // Callback function for setting the position, fires a event.
         set(position) {
-            constObject.currentPosition = position;
-            ET.fire('constObject.positionUpdated');
-            debug.message(constObject.intervalCounter + ' position lat: ' + position.coords.latitude + ' long: ' + position.coords.longitude);
+            config.currentPosition = position;
+            ET.fire('config.positionUpdated');
+            debug.message(config.intervalCounter + ' position lat: ' + position.coords.latitude + ' long: ' + position.coords.longitude);
         },
         // Checks the location, fires redirect to a different page on location
         check() {
@@ -98,7 +98,7 @@ https://github.com/ju5tu5/cmdgeo/blob/master/src/cmdgeo-0.1.js
                         longitude: locations[i][4]
                     }
                 };
-                if (this.calculate(locatie, constObject.currentPosition) < locations[i][2]) {
+                if (this.calculate(locatie, config.currentPosition) < locations[i][2]) {
                     // Check if we are on location
                     if (window.location != locations[i][1] && localStorage[locations[i][0]] == 'false') {
                         // Try local storage, if it exists increment the location, else catch all errors
@@ -131,7 +131,7 @@ https://github.com/ju5tu5/cmdgeo/blob/master/src/cmdgeo-0.1.js
      * to generate a map and places this in the HTML element
      * thats indicated by the given ID
      *
-     * @param myOptions:object - a object with constObjecturable options
+     * @param myOptions:object - a object with configurable options
      *  for calling the google maps API
      * @param canvasID:string - the id of the HTML element where the
      *   map in pre-rendered moet worden, <div> of <canvas>
@@ -140,7 +140,7 @@ https://github.com/ju5tu5/cmdgeo/blob/master/src/cmdgeo-0.1.js
         generateMap(myOptions, canvasId, tourType, isNumber, positionMarker, markerArray) {
             // TODO: Can I call the maps API async? Less calls
             debug.message('Generate a Google Maps maps and show this in #' + canvasId);
-            constObject.map = new google.maps.Map(document.getElementById(canvasId), myOptions);
+            config.map = new google.maps.Map(document.getElementById(canvasId), myOptions);
 
             const routeList = [];
             // Add the markers to map dependending on the tourType
@@ -156,21 +156,21 @@ https://github.com/ju5tu5/cmdgeo/blob/master/src/cmdgeo-0.1.js
                 const markerLatLng = new google.maps.LatLng(locations[i][3], locations[i][4]);
                 routeList.push(markerLatLng);
 
-                constObject.markerArray[i] = {};
+                config.markerArray[i] = {};
                 for (const attr in locationMarker) {
-                    constObject.markerArray[i][attr] = locationMarker[attr];
+                    config.markerArray[i][attr] = locationMarker[attr];
                 }
                 markerArray[i].scale = locations[i][2] / 3;
 
-                new google.maps.Marker({position: markerLatLng, map: constObject.map, icon: constObject.markerArray[i], title: locations[i][0]});
+                new google.maps.Marker({position: markerLatLng, map: config.map, icon: config.markerArray[i], title: locations[i][0]});
             }
 
-            if (tourType == constObject.lineair) {
+            if (tourType == config.lineair) {
                 // Draw line between points
                 debug.message('Drawing route');
                 const route = new google.maps.Polyline({
                     clickable: false,
-                    map: constObject.map,
+                    map: config.map,
                     path: routeList,
                     strokeColor: 'Black',
                     strokeOpacity: .6,
@@ -178,8 +178,8 @@ https://github.com/ju5tu5/cmdgeo/blob/master/src/cmdgeo-0.1.js
                 });
             }
             // Add the location of the user
-            constObject.currentPositionMarker = new google.maps.Marker({position: myOptions.center, map: constObject.map, icon: positionMarker, title: 'U are here'});
-            ET.addListener(constObject.positionUpdated, this.updatePositie);
+            config.currentPositionMarker = new google.maps.Marker({position: myOptions.center, map: config.map, icon: positionMarker, title: 'U are here'});
+            ET.addListener(config.positionUpdated, this.updatePositie);
         },
 
         isNumber(n) {
@@ -189,9 +189,9 @@ https://github.com/ju5tu5/cmdgeo/blob/master/src/cmdgeo-0.1.js
         // Update the users position on the map
         updatePositie() {
             // use currentPosition to center the map
-            const newPos = new google.maps.LatLng(constObject.currentPosition.coords.latitude, constObject.currentPosition.coords.longitude);
-            constObject.map.setCenter(newPos);
-            constObject.currentPositionMarker.setPosition(newPos);
+            const newPos = new google.maps.LatLng(config.currentPosition.coords.latitude, config.currentPosition.coords.longitude);
+            config.map.setCenter(newPos);
+            config.currentPositionMarker.setPosition(newPos);
         }
     };
 
@@ -201,14 +201,14 @@ https://github.com/ju5tu5/cmdgeo/blob/master/src/cmdgeo-0.1.js
         },
 
         message(message) {
-            (constObject.customDebugging && constObject.debugId)
-                ? document.getElementById(constObject.debugId).innerHTML
+            (config.customDebugging && config.debugId)
+                ? document.getElementById(config.debugId).innerHTML
                 : console.log(message);
         },
 
         setCustomDebugging(debugId) {
-            constObject.debugId = debugId;
-            constObject.customDebugging = true;
+            config.debugId = debugId;
+            config.customDebugging = true;
         }
     };
 }());
