@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>WAFS // Week 2</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js" charset="utf-8" defer></script>
+  <script src="./static/aja/aja.min.js" charset="utf-8" defer></script>
+  <script src="./static/app.js" charset="utf-8" defer></script>
+</head>
+<body>
+  <main>
+    <h1>Weather</h1>
+    <!-- Handlebars script template -->
+    <script id="template" type="text/x-handlebars-template">
+      <article id="hourly-data-{{FCTTIME.mday_padded}}-{{FCTTIME.mon_padded}}">
+        <h1><time>{{FCTTIME.pretty}}</time></h1>
+        <ul>
+          <li>Condition: {{conditions}}</li>
+          <li>Temprature: {{temp.metric}}℃</li>
+          <li>Feels like: {{feelslike.metric}}℃</li>
+          <li>Wind speed: {{wspd.metric}}km/h</li>
+        </ul>
+        <img src="{{icon_url}}" alt="weather condition {{icon}}">
+      </article>
+    </script>
+  </main>
+</body>
+</html>

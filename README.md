@@ -20,9 +20,9 @@ In the first week we will have the following exercises:
 
 ## Week 2
 In the second week we will have the following exercises:
-- [ ] Get data with AJAX (maybe Fetch.js)
+- [x] Get data with AJAX (maybe Fetch.js)
 - [ ] Implement Routing (maybe use Routie.js)
-- [ ] Implement Templating engine (maybe Handlebar.js)
+- [x] Implement Templating engine (maybe Handlebar.js)
 - [ ] Manipulate data (map, filter, reduce)
 - [ ] Code Review classmates
 - [ ] Implement Web Worker (extra)
