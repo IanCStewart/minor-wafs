@@ -12,12 +12,41 @@
 <body>
   <main>
     <h1>Weather</h1>
+    <section id="current">
+      <a href="#hourly"></a>
+    </section>
+    <section id="hourly"></section>
+    <section id="hourly-detail"></section>
     <!-- Handlebars script template -->
-    <script id="template" type="text/x-handlebars-template">
-      <article id="hourly-data-{{FCTTIME.mday_padded}}-{{FCTTIME.mon_padded}}">
+    <script id="template-current" type="text/x-handlebars-template">
+      <article class="current-data">
+        <dl>
+          <dt>Temprature</dt>
+          <dd>{{current.temp_c}}</dd>
+        </dl>
+        <dl>
+          <dt>Location</dt>
+          <dd>{{current.observation_location.city}}, {{current.observation_city.country}}</dd>
+          <dt>Time</dt>
+          <dd>{{timestamp}}</dd>
+          <dt>Date</dt>
+          <dd>{{datestamp}}</dd>
+        </dl>
+        <dl>
+          <dt>Wind speed</dt>
+          <dd><img src="./static/img/plane.svg" alt="wind-icon"><em>{{current.wind_kph}}</em></dd>
+          <dt>Humidity</dt>
+          <dd><img src="./static/img/drop-silhouette.svg" alt="humidity-icon"><em>{{current.relative_humidity}}</em></dd>
+          <dt>Condition</dt>
+          <dd><img src="{{current.icon_url}}" alt="{{current.icon}}"></dd>
+        </dl>
+      </article>
+    </script>
+    <script id="template-hourly" type="text/x-handlebars-template">
+      <article class="hourly-data">
         <h1><time>{{FCTTIME.pretty}}</time></h1>
         <ul>
-          <li>Condition: {{conditions}}</li>
+          <li>Condition: {{condition}}</li>
           <li>Temprature: {{temp.metric}}℃</li>
           <li>Feels like: {{feelslike.metric}}℃</li>
           <li>Wind speed: {{wspd.metric}}km/h</li>
