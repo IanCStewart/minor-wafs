@@ -32,10 +32,9 @@
 
   const routes = {
     pages: ['#current', '#hourly', '#hourly-detail'],
-    location: window.location.hash,
     init() {
-      section.toggle(this.location === '' ? '#current' : this.location);
-      window.addEventListener('hashchange', () => section.toggle(this.location), false);
+      section.toggle(window.location.hash === '' ? '#current' : this.location);
+      window.addEventListener('hashchange', () => section.toggle(window.location.hash), false);
     }
   };
 
