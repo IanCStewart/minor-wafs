@@ -1,5 +1,7 @@
 /*global window, document, aja, Handlebars*/
 (function(){
+  'use strict';
+
   const appSettings = {
     current: document.querySelector('#current'),
     hourly: document.querySelector('#hourly'),
@@ -16,12 +18,13 @@
     timestamp: '',
     current: '',
     hourly: '',
-    detail: ''
+    filter: ''
   };
 
   const app = {
     init() {
       routes.init();
+      filter.init();
       getData.current();
       getData.hourly();
     },
@@ -31,7 +34,7 @@
   };
 
   const routes = {
-    pages: ['#current', '#hourly', '#hourly-detail'],
+    pages: ['#current', '#hourly'],
     init() {
       section.toggle(window.location.hash);
       window.addEventListener('hashchange', () => section.toggle(window.location.hash), false);
@@ -77,8 +80,15 @@
         appSettings.hourly.innerHTML += appSettings.html;
       });
     },
-    filter(data, filter) {
-      console.log(data, filter);
+    filteredData(data) {
+      console.log(data);
+    }
+  };
+// TODO: this is broken now
+  const filter = {
+    init() {
+      console.log('filter.init()');
+      document.querySelector('.filter-station').addEventListener('click', () => console.log('clicked'), false);
     }
   };
 
@@ -98,6 +108,19 @@
          storeData.hourly(data);
       })
       .go();
+    },
+    filter() {
+      console.log('getData.filter()');
+      const filteredData = [];
+      document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
+        checkbox.checked
+        ? checkbox.name === 'Partly Cloudy'
+        ? filteredData.push(weatherData.hourly.filter((d) => d.condition.includes('Cloudy')))
+        : filteredData.push(weatherData.hourly.filter((d) => d.condition === checkbox.name))
+        : null;
+      });
+      console.log('after filter', filteredData);
+      filteredData.length === 0 ? null : render.filteredData(filteredData);
     }
   };
 
