@@ -33,13 +33,14 @@
   const routes = {
     pages: ['#current', '#hourly', '#hourly-detail'],
     init() {
-      section.toggle(window.location.hash === '' ? '#current' : this.location);
+      section.toggle(window.location.hash);
       window.addEventListener('hashchange', () => section.toggle(window.location.hash), false);
     }
   };
 
   const section = {
     toggle(route) {
+      route === '' ? route = '#current' : null;
       routes.pages.forEach(function (page) {
         page === route
         ? document.querySelector(page).classList.remove('invisible')
@@ -68,10 +69,9 @@
   };
 
   const render = function (data) {
-    (function(){
-      appSettings.html = appSettings.templateCurrent(data);
-      appSettings.current.innerHTML += appSettings.html;
-    })();
+    console.log(data);
+    appSettings.html = appSettings.templateCurrent(data);
+    appSettings.current.innerHTML += appSettings.html;
     data.hourly.forEach(function (item) {
       appSettings.html = appSettings.templateHourly(item);
       appSettings.hourly.innerHTML += appSettings.html;

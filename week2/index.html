@@ -5,28 +5,33 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>WAFS // Week 2</title>
+  <link rel="stylesheet" href="./static/styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js" charset="utf-8" defer></script>
   <script src="./static/aja/aja.min.js" charset="utf-8" defer></script>
   <script src="./static/app.js" charset="utf-8" defer></script>
 </head>
 <body>
   <main>
-    <h1>Weather</h1>
-    <section id="current">
-      <a href="#hourly">mooi linkie</a>
+    <nav>
+      <h1>Weather api</h1>
+      <a href="#current">current</a>
+      <a href="#hourly">hourly</a>
+    </nav>
+    <section id="current"></section>
+    <section id="hourly">
+
     </section>
-    <section id="hourly"></section>
     <section id="hourly-detail"></section>
     <!-- Handlebars script template -->
     <script id="template-current" type="text/x-handlebars-template">
       <article class="current-data">
         <dl>
           <dt>Temprature</dt>
-          <dd>{{current.temp_c}}</dd>
+          <dd>{{current.temp_c}}<sup>˚C</sup></dd>
         </dl>
         <dl>
           <dt>Location</dt>
-          <dd>{{current.observation_location.city}}, {{current.observation_city.country}}</dd>
+          <dd>{{current.observation_location.city}}, {{current.observation_location.country}}</dd>
           <dt>Time</dt>
           <dd>{{timestamp}}</dd>
           <dt>Date</dt>
@@ -34,7 +39,7 @@
         </dl>
         <dl>
           <dt>Wind speed</dt>
-          <dd><img src="./static/img/plane.svg" alt="wind-icon"><em>{{current.wind_kph}}</em></dd>
+          <dd><img src="./static/img/plane.svg" alt="wind-icon"><em>{{current.wind_kph}}km/h</em></dd>
           <dt>Humidity</dt>
           <dd><img src="./static/img/drop-silhouette.svg" alt="humidity-icon"><em>{{current.relative_humidity}}</em></dd>
           <dt>Condition</dt>
@@ -47,8 +52,8 @@
         <h1><time>{{FCTTIME.pretty}}</time></h1>
         <ul>
           <li>Condition: {{condition}}</li>
-          <li>Temprature: {{temp.metric}}℃</li>
-          <li>Feels like: {{feelslike.metric}}℃</li>
+          <li>Temprature: {{temp.metric}}<sup>˚C</sup></li>
+          <li>Feels like: {{feelslike.metric}}<sup>˚C</sup></li>
           <li>Wind speed: {{wspd.metric}}km/h</li>
         </ul>
         <img src="{{icon_url}}" alt="weather condition {{icon}}">
