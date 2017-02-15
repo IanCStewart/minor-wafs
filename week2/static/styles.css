@@ -200,6 +200,37 @@ li {
   align-content: flex-start;
 }
 
+.filter-station {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-wrap: wrap;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.filter-station input {
+  display: none;
+}
+
+.filter-station img {
+  height: 4rem;
+  margin: 0 1rem;
+  opacity: .5;
+  filter: grayscale(100%);
+  transition: all .3s ease-in-out;
+}
+
+.filter-station img:hover {
+  opacity: .75;
+  filter: grayscale(25%);
+}
+
+.filter-station input:checked+img {
+  opacity: 1;
+  filter: grayscale(0%);
+}
+
 .hourly-data {
   position: relative;
   padding: 2rem;

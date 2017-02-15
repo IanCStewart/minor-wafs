@@ -26,3 +26,7 @@ In the second week we will have the following exercises:
 - [ ] Manipulate data (map, filter, reduce)
 - [ ] Code Review classmates
 - [ ] Implement Web Worker (extra)
+
+#### Links to assignments
+- [Web app](https://github.com/IanCStewart/minor-wafs)
+- Code Review classmates [review 1](Get data with AJAX) [review 2]()

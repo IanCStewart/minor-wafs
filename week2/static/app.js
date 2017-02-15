@@ -26,7 +26,7 @@
       getData.hourly();
     },
     render() {
-      weatherData.current && weatherData.hourly ? render(weatherData) : null;
+      weatherData.current && weatherData.hourly ? render.init(weatherData) : null;
     }
   };
 
@@ -68,14 +68,18 @@
     }
   };
 
-  const render = function (data) {
-    console.log(data);
-    appSettings.html = appSettings.templateCurrent(data);
-    appSettings.current.innerHTML += appSettings.html;
-    data.hourly.forEach(function (item) {
-      appSettings.html = appSettings.templateHourly(item);
-      appSettings.hourly.innerHTML += appSettings.html;
-    });
+  const render = {
+    init(data) {
+      appSettings.html = appSettings.templateCurrent(data);
+      appSettings.current.innerHTML += appSettings.html;
+      data.hourly.forEach(function (item) {
+        appSettings.html = appSettings.templateHourly(item);
+        appSettings.hourly.innerHTML += appSettings.html;
+      });
+    },
+    filter(data, filter) {
+      console.log(data, filter);
+    }
   };
 
   const getData = {
