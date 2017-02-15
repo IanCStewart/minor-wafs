@@ -4,7 +4,7 @@
 
   const appSettings = {
     current: document.querySelector('#current'),
-    hourly: document.querySelector('#hourly'),
+    hourly: document.querySelector('.hourly-container'),
     detail: document.querySelector('#hourly-detail'),
     templateCurrent: Handlebars.compile(document.querySelector('#template-current').innerHTML),
     templateHourly: Handlebars.compile(document.querySelector('#template-hourly').innerHTML),
@@ -17,8 +17,7 @@
     datestamp: '',
     timestamp: '',
     current: '',
-    hourly: '',
-    filter: ''
+    hourly: ''
   };
 
   const app = {
@@ -82,13 +81,24 @@
     },
     filteredData(data) {
       console.log(data);
+      appSettings.hourly.innerHTML = '';
+      data.map(function (item) {
+        appSettings.html = appSettings.templateHourly(item);
+        appSettings.hourly.innerHTML += appSettings.html;
+      });
+    },
+    clearedFilter(data) {
+      appSettings.hourly.innerHTML = '';
+      data.hourly.forEach(function (item) {
+        appSettings.html = appSettings.templateHourly(item);
+        appSettings.hourly.innerHTML += appSettings.html;
+      });
     }
   };
-// TODO: this is broken now
+
   const filter = {
     init() {
-      console.log('filter.init()');
-      document.querySelector('.filter-station').addEventListener('click', () => console.log('clicked'), false);
+      document.querySelector('.filter-station').addEventListener('click', () => getData.filter(), false);
     }
   };
 
@@ -109,8 +119,8 @@
       })
       .go();
     },
+    // TODO: filter station doesn't seem to stack the data :(
     filter() {
-      console.log('getData.filter()');
       const filteredData = [];
       document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
         checkbox.checked
@@ -119,8 +129,7 @@
         : filteredData.push(weatherData.hourly.filter((d) => d.condition === checkbox.name))
         : null;
       });
-      console.log('after filter', filteredData);
-      filteredData.length === 0 ? null : render.filteredData(filteredData);
+      filteredData.length === 0 ? render.clearedFilter(weatherData) : render.filteredData(...filteredData);
     }
   };
 
