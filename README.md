@@ -29,4 +29,4 @@ In the second week we will have the following exercises:
 
 #### Links to assignments
 - [Web app](https://github.com/IanCStewart/minor-wafs)
-- Code Review classmates [review 1](Get data with AJAX) [review 2]()
+- Code Review classmates [review 1](https://github.com/rijkvanzanten/minor-wafs/pull/7)
