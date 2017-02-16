@@ -12,5 +12,6 @@ build
 # misc
 .DS_Store
 .env
+.atom-live-server.json
 npm-debug.log
 settings.json
