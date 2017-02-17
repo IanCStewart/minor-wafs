@@ -8,8 +8,8 @@
     detail: document.querySelector('#hourly-detail'),
     templateCurrent: Handlebars.compile(document.querySelector('#template-current').innerHTML),
     templateHourly: Handlebars.compile(document.querySelector('#template-hourly').innerHTML),
-    urlHourly: 'http://api.wunderground.com/api/7f0aee996268ea76/hourly/q/autoip.json',
-    urlCurrent: 'http://api.wunderground.com/api/7f0aee996268ea76/conditions/q/autoip.json',
+    urlHourly: 'https://api.wunderground.com/api/7f0aee996268ea76/hourly/q/autoip.json',
+    urlCurrent: 'https://api.wunderground.com/api/7f0aee996268ea76/conditions/q/autoip.json',
     html: ''
   };
 
