@@ -10,4 +10,4 @@ In the third week we will have the following exercises:
 - [ ] Code review
 
 ### Diagram & Flow of the app
-![diagram](https://github.com/IanCStewart/minor-wafs/blob/develop/week3/week3-flow-diagram.png)
+![diagram](https://github.com/IanCStewart/minor-wafs/blob/week3/week3/week3-flow-diagram.png)
