@@ -5,7 +5,6 @@
   const appSettings = {
     current: document.querySelector('#current'),
     hourly: document.querySelector('.hourly-container'),
-    detail: document.querySelector('#hourly-detail'),
     templateCurrent: Handlebars.compile(document.querySelector('#template-current').innerHTML),
     templateHourly: Handlebars.compile(document.querySelector('#template-hourly').innerHTML),
     urlHourly: 'https://api.wunderground.com/api/7f0aee996268ea76/hourly/q/autoip.json',
