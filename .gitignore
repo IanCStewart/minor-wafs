@@ -15,3 +15,4 @@ build
 .atom-live-server.json
 npm-debug.log
 settings.json
+config.js

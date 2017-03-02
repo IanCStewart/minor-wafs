@@ -148,7 +148,7 @@
       on('error', render.error('hourly'))
       .go();
     },
-    // TODO: filter station doesn't seem to stack the data :(
+
     filter() {
       const filteredData = [];
       document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
