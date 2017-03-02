@@ -108,6 +108,27 @@ li {
   box-sizing: border-box;
 }
 
+.empty-state {
+  margin: 2rem;
+  align-self: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: calc(100% - 4rem);
+  max-width: 35rem;
+  padding: 2rem;
+  background: linear-gradient(to bottom right,hsla(213, 16%, 2%, .85),hsla(213, 16%, 22%, .85));
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  box-sizing: border-box;
+}
+
+.empty-state h1 {
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
 .current-data {
   margin: 2rem;
   align-self: center;

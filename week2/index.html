@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>WAFS // Week 2</title>
   <link rel="stylesheet" href="./static/styles.css">
+  <script src="./config.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.6/handlebars.min.js" charset="utf-8" defer></script>
   <script src="./static/aja/aja.min.js" charset="utf-8" defer></script>
   <script src="./static/app.js" charset="utf-8" defer></script>
@@ -17,7 +18,12 @@
       <a href="#current">current</a>
       <a href="#hourly">hourly</a>
     </nav>
-    <section id="current"></section>
+    <section id="current">
+      <div class="empty-state">
+        <h1>No JavaScript</h1>
+        <p>It seems that you have turned off your browsers JavaScript. For this website to fully work please turn this back on</p>
+      </div>
+    </section>
     <section id="hourly">
       <div class="filter-station">
         <label class="label"><input type="checkbox" name="Clear"><img src="https://icons.wxug.com/i/c/v4/clear.svg" alt="Clear"></label>
@@ -29,7 +35,12 @@
         <label class="label"><input type="checkbox" name="Snow"><img src="https://icons.wxug.com/i/c/v4/snow.svg" alt="Snow"></label>
         <label class="label"><input type="checkbox" name="Tstorm"><img src="https://icons.wxug.com/i/c/v4/tstorms.svg" alt="Tstorm"></label>
       </div>
-      <section class="hourly-container"></section>
+      <section class="hourly-container">
+        <div class="empty-state">
+          <h1>No JavaScript</h1>
+          <p>It seems that you have turned off your browsers JavaScript. For this website to fully work please turn this back on</p>
+        </div>
+      </section>
     </section>
     <!-- Handlebars script template -->
     <script id="template-current" type="text/x-handlebars-template">
