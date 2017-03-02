@@ -1,11 +1,11 @@
-## Week 2
+## Week 3
 In the third week we will have the following exercises:
-- [ ] Give feedback to users
+- [x] Give feedback to users
 - [ ] README with features, usage, wishlist and sources
 - [x] Flow Diagram
 - [ ] Interaction Diagram
-- [ ] Filter, map, sort
-- [ ] Refactor to modules
+- [x] Filter, map, sort
+- [x] Refactor
 - [ ] PubSub pattern (extra)
 - [ ] Code review
 
@@ -21,4 +21,4 @@ var config = {
 Import this file in your html before the `main.js` file.
 
 ### Actor diagram of the app
-![diagram](https://github.com/IanCStewart/minor-wafs/blob/week3/week3/week3-flow-diagram.png)
+![diagram](https://github.com/IanCStewart/minor-wafs/week3/week3-flow-diagram.png)
