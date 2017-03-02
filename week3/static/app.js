@@ -1,6 +1,5 @@
 /*global window, document, aja, Handlebars, config, localStorage*/
 (function(){
-  console.log('we can start');
   const appSettings = {
     current: document.querySelector('#current'),
     hourly: document.querySelector('.hourly-container'),
@@ -32,24 +31,22 @@
 
   const app = {
     init() {
-      console.log('app.init');
       routes.listen();
     }
   };
 
   const routes = {
     listen() {
-      console.log('routes.listen');
+      store.hydrate();
       section.toggle(window.location.hash);
       window.addEventListener('hashchange', () => section.toggle(window.location.hash), false);
-      document.querySelector('.filter-station').addEventListener('click', () => section.renderFiltered(), false);
+      document.querySelector('.filter-station').addEventListener('click', () => store.filter(), false);
     },
     pages: ['#current', '#hourly']
   };
 
   const section = {
     toggle(route) {
-      console.log('section.toggle');
       route === '' ? route = '#current' : null;
       routes.pages.forEach(function (page) {
         page === route
@@ -58,10 +55,10 @@
       });
     },
     renderInitial(data) {
-      console.log('render.initial');
       appSettings.current.innerHTML = '';
       appSettings.hourly.innerHTML = '';
       appSettings.html = appSettings.templateCurrent(data);
+      appSettings.current.innerHTML = appSettings.html;
       data.hourly.forEach(function (item) {
         appSettings.html = appSettings.templateHourly(item);
         appSettings.hourly.innerHTML += appSettings.html;
@@ -77,7 +74,6 @@
       : appSettings.hourly.innerHTML += emptyState.noLenght('filter');
     },
     renderError(filter) {
-      console.log('render.error');
       appSettings.html = emptyState.connection;
       if (filter) {
         appSettings.html = emptyState.noLenght('filter');
@@ -91,8 +87,7 @@
 
   const store = {
     hydrate() {
-      console.log('store.hydrate');
-      const weatherData = localStorage.getItem('weatherData');
+      const weatherData = JSON.parse(localStorage.getItem('weatherData'));
       if (!weatherData) {
         request.data();
       } else {
@@ -111,7 +106,7 @@
       }
     },
     filter() {
-      const weatherData = localStorage.getItem('weatherData');
+      const weatherData = JSON.parse(localStorage.getItem('weatherData'));
       const filteredData = [];
       document.querySelectorAll('input[type="checkbox"]').forEach(function (checkbox) {
         if (checkbox.checked) {
@@ -120,18 +115,16 @@
           : filteredData.push(weatherData.hourly.filter((d) => d.condition === checkbox.name));
         }
       });
-      filteredData.length === 0 ? section.renderFiltered(weatherData) : section.renderFiltered([].concat.apply([], filteredData));
+      filteredData.length === 0 ? section.renderFiltered(weatherData.hourly) : section.renderFiltered([].concat.apply([], filteredData));
     },
     data(data) {
-      console.log('store.data');
-      localStorage.setItem('weatherData', data);
+      localStorage.setItem('weatherData', JSON.stringify(data));
       this.hydrate();
     }
   };
 
   const request = {
     data() {
-      console.log('request.data');
       const apiData = {};
       const date = new Date();
       const minutes = '0' + date.getMinutes();
@@ -139,36 +132,28 @@
       const month = '0' + date.getMonth();
       const formattedTime = `${date.getHours()}:${minutes.substr(-2)}:${seconds.substr(-2)}`;
       const formattedDate = `${date.getDate()}-${month.substr(-2)}-${date.getFullYear()}`;
-      apiData.datestamp = formattedTime;
-      apiData.timestamp = formattedDate;
-      this
-        .promise('conditions')
-        .then(
-          function(data) {
-            apiData.current = data.current_observation;
-            request.promise('hourly').then(
-              function() {
-                apiData.hourly = data.hourly_forecast;
-                store.data(apiData);
-              }
-            );
-          }
-        )
+      apiData.datestamp = formattedDate;
+      apiData.timestamp = formattedTime;
+      Promise.all([this.get('conditions'), this.get('hourly')])
+        .then(function(results) {
+          apiData.current = results[0].current_observation;
+          apiData.hourly = results[1].hourly_forecast;
+          store.data(apiData);
+        })
         .catch(section.renderError());
     },
-    promise(type) {
-      console.log('request.promise');
-      return new Promise(function(resolve, reject) {
+    get(type) {
+      const promise = new Promise(function(resolve) {
         aja()
         .url(appSettings.url(type))
         .on('success', function(data){
           resolve(data);
-        }).
-        on('error', reject())
+        })
         .go();
       });
+      return promise;
     }
   };
 
   app.init();
-});
+})();
