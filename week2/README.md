@@ -11,7 +11,7 @@ In the second week we will have the following exercises:
 ![week 2 diagram](https://github.com/IanCStewart/minor-wafs/blob/develop/week2/week2-diagram.png)
 
 ### Deploying
-Get an API key at weather underground and put this in `config.js`.
+Get an API key at [weather underground](https://www.wunderground.com) and put this in `config.js`.
 ```
 touch config.js && vim config.js
 
