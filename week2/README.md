@@ -8,7 +8,7 @@ In the second week we will have the following exercises:
 - [ ] Implement Web Worker (extra)
 
 ### Diagram of the app
-![week 2 diagram](https://github.com/IanCStewart/minor-wafs/blob/develop/week2/week2-diagram.png)
+![week 2 diagram](./week2-diagram.png)
 
 ### Deploying
 Get an API key at [weather underground](https://www.wunderground.com) and put this in `config.js`.

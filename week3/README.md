@@ -21,4 +21,4 @@ var config = {
 Import this file in your html before the `main.js` file.
 
 ### Actor diagram of the app
-![diagram](https://github.com/IanCStewart/minor-wafs/week3/week3-flow-diagram.png)
+![diagram](./week3-flow-diagram.png)
