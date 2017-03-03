@@ -39,4 +39,4 @@ By browsing to the `index.html` file u can start using the app. The user can the
 - Handle tempting without Handlebars()
 
 ## Link to web app
-Here is the link to my [weather SPA](iancstewart.github.io/wafs).
+Here is the link to my [weather SPA](https://iancstewart.github.io/wafs/).
