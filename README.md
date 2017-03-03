@@ -9,7 +9,7 @@ The app is a single page web app (SPA) that shows the current and hourly weather
 ![actor diagram](./week3/week3-actor-diagram.png)
 
 #### Flow diagram
-![flow diagram]()
+![flow diagram](./week3/week3-flow-diagram.png)
 
 ### Developing
 Get an API key at [weather underground](https://www.wunderground.com) and put this in `config.js`.
