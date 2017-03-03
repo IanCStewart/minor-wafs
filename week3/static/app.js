@@ -6,7 +6,17 @@
     templateCurrent: Handlebars.compile(document.querySelector('#template-current').innerHTML),
     templateHourly: Handlebars.compile(document.querySelector('#template-hourly').innerHTML),
     url(parameter) { return `https://api.wunderground.com/api/${config.API_KEY}/${parameter}/q/autoip.json`;},
-    html: ''
+    html: '',
+    // Zoiets    
+    date: {
+      date: new Date(),
+      month: '0' + date.getMonth(),
+      minutes: '0' + date.getMinutes(),
+      seconds: '0' + date.getSeconds(),
+      month: '0' + date.getMonth()
+      // Etc..etc..
+      // Maar weet niet of het dan nog werkt..
+    }
   };
 
   const emptyState = {
