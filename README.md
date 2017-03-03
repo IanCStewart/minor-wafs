@@ -27,9 +27,9 @@ By browsing to the `index.html` file u can start using the app. The user can the
 
 ## Resources
 - [Weather Underground](https://www.wunderground.com)
-- [Aja()]()
-- [Handlebars()]()
-- [Mozilla Developers Network}()
+- [Aja()](http://krampstudio.com/aja.js/)
+- [Handlebars()](http://handlebarsjs.com/)
+- [Mozilla Developers Network](https://developer.mozilla.org/)
 
 ## Wishlist
 - Implement web worker
