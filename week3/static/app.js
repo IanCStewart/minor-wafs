@@ -92,13 +92,12 @@
         request.data();
       } else {
         const date = new Date();
-        const minutes = '0' + date.getMinutes();
         const month = '0' + date.getMonth();
         const formattedDate = `${date.getDate()}-${month.substr(-2)}-${date.getFullYear()}`;
         const timestamp = weatherData.timestamp.split(':');
         if (formattedDate != weatherData.datestamp) {
           request.data();
-        } else if (timestamp[0] * 1 < date.getHours() && timestamp[1] * 1 < minutes.substr(-2)) {
+        } else if (timestamp[0] * 1 < date.getHours()) {
           request.data();
         } else {
           section.renderInitial(weatherData);

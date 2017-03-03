@@ -1,7 +1,7 @@
 ## Week 3
 In the third week we will have the following exercises:
 - [x] Give feedback to users
-- [ ] README with features, usage, wishlist and sources
+- [x] README with features, usage, wishlist and sources
 - [x] Flow Diagram
 - [ ] Interaction Diagram
 - [x] Filter, map, sort
@@ -21,4 +21,4 @@ var config = {
 Import this file in your html before the `main.js` file.
 
 ### Actor diagram of the app
-![diagram](./week3-flow-diagram.png)
+![diagram](./week3-actor-diagram.png)

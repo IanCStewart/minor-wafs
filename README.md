@@ -1,32 +1,42 @@
 # Web App From Scratch
-_This is a Repo for the course Web App From Scratch._
+_This is a Repo for the course Web App From Scratch. I have made a web app on the Weather Underground API_
 
-## Week 1
-In the first week we will have the following exercises:
-- [x] Make a GitHub repository
-- [x] Research Pros and Cons of jQuery
-- [x] Research Pros and Cons of single page web app
-- [x] Refactor CMDAan geo script code
-- [x] Set-up basic structure single page web app
-- [x] Code Review classmates
+## The app
+The app is a single page web app (SPA) that shows the current and hourly weather by your location. I mainly built this to experiment with SPA’s and API calls. Besides that I’m looking into building a weather dashboard for a company someday so this will be the first steps to that as well.
 
-#### Links to assignments
-1. [Make a GitHub repository](https://github.com/IanCStewart/minor-wafs)
-2. [Research Pros and Cons of jQuery](https://github.com/IanCStewart/minor-wafs/blob/develop/assignment2/jquery-pros-cons.md)
-3. [Research Pros and Cons of single page web app](https://github.com/IanCStewart/minor-wafs/blob/develop/assignment3/spa-pros-cons.md)
-4. [Refactor CMDAan geo script code](https://github.com/IanCStewart/minor-wafs/blob/develop/assignment4/geo-script.js)
-5. [Set-up basic structure single page web app](https://iancstewart.github.io/wafs/)
-6. Code Review classmates [review 1](https://github.com/rijkvanzanten/minor-wafs/issues/3#event-953969125) [review 2](https://github.com/TuriGuilano/WAFS/issues/2)
+### Diagrams
+#### Actor diagram
+![actor diagram](./week3/week3-actor-diagram.png)
 
-## Week 2
-In the second week we will have the following exercises:
-- [x] Get data with AJAX (ended up using aja.js)
-- [x] Implement Routing (ended up using vannilla-js)
-- [x] Implement Templating engine (ended up using Handlebar.js)
-- [x] Manipulate data (map, filter, reduce)
-- [x] Code Review classmates
-- [ ] Implement Web Worker (extra)
+#### Flow diagram
+![flow diagram](./week3/week3-flow-diagram.png)
 
-#### Links to assignments
-- [Web app](https://github.com/IanCStewart/minor-wafs)
-- Code Review classmates [review 1](https://github.com/rijkvanzanten/minor-wafs/pull/7)
+### Developing
+Get an API key at [weather underground](https://www.wunderground.com) and put this in `config.js`.
+```
+touch config.js && vim config.js
+
+var config = {
+  API_KEY: ${YOUR_API_KEY}
+};
+```
+Import this file in your html before the `main.js` file.
+
+## Usage
+By browsing to the `index.html` file u can start using the app. The user can then see the current weather. By browsing to the hourly section the user will be able to see the hourly forecast. Here the user can filter weather data .
+
+## Resources
+- [Weather Underground](https://www.wunderground.com)
+- [Aja()]()
+- [Handlebars()]()
+- [Mozilla Developers Network}()
+
+## Wishlist
+- Implement web worker
+- Automatic update on new weather data
+- Loader (loading spinner during start-up)
+- Handle API call without Aja()
+- Handle tempting without Handlebars()
+
+## Link to web app
+Here is the link to my [weather SPA](iancstewart.github.io/wafs).
